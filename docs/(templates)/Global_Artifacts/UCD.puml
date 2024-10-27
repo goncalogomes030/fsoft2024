@@ -1,0 +1,37 @@
+@startuml
+'https://plantuml.com/use-case-diagram
+
+title Dream House Management System - Use Case Diagram
+
+left to right direction
+
+actor NetworkManager
+actor Owner
+actor RealEstateAgent
+actor Client
+
+(UC01 - View listed properties) as (viewProp)
+(UC02 - Checks advertisement) as (checkAdv)
+(UC03 - Schedules a visit) as (schedVisit)
+(UC04 - Confirms scheduled visit) as (ConfVisit)
+(UC05 - Manages advertisements) as (managAdv)
+(UC06 - Manage property) as (managProp)
+(UC07 - List a property) as (listProp)
+(UC08 - Create Branch) as (createBranch)
+(UC09 - Create Real Estate Agent) as (createREA)
+
+NetworkManager --> (createBranch)
+NetworkManager --> (createREA)
+
+(Owner) --> (listProp)
+
+(RealEstateAgent) --> (ConfVisit)
+(RealEstateAgent) --> (managAdv)
+(RealEstateAgent) --> (managProp)
+
+(Client) --> (viewProp)
+(Client) --> (checkAdv)
+(Client) --> (schedVisit)
+
+
+@enduml

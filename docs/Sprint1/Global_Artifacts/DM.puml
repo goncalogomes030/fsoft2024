@@ -1,0 +1,121 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+hide circle
+hide methods
+
+'Main entities
+class Client {
+    - internal_code
+    - name
+    - citizen_card
+    - TIF
+    - email_address
+    - phone_number
+}
+
+
+class Property {
+    - id
+    - type
+    - area
+    - location
+    - distance_from_center
+    - price
+    - photographs
+}
+
+class Owner {
+    - id
+    - name
+    - citizen_card
+    - TIF
+    - email
+    - phone_number
+}
+
+class Land {
+}
+
+class House {
+    - basement
+    - habitable_attic
+    - sun_exposure
+}
+
+class Apartment {
+ }
+
+
+class Specifications {
+   - n_bedrooms
+   - n_bathrooms
+   - n_parking_spaces
+   - central heating
+   - air conditioning
+}
+class Branch {
+    - code
+    - designation
+    - address
+    - opening_time
+    - closing_time
+}
+
+class RealEstateAgent {
+    - id
+    - name
+    - citizen_card
+    - email
+    - phone_number
+}
+
+class Advertisement {
+    - id
+    - commission
+    - type
+}
+
+class Visit {
+    - id
+    - preferred_date
+    - confirmed_date
+    - status
+}
+
+class NetworkManager {
+    - id
+    - name
+    - citizen_card
+    - email
+    - phone_number
+}
+
+class Schedule {
+    - id
+    - day
+    - time
+}
+
+'Relationships and Cardinalities
+Owner "1" -down-- "0..*" Property: owns >
+Owner "1" -right-- "0..*" Branch: visits >
+Property "1" -right-- "1" RealEstateAgent: managed by >
+Property "1" -down-- "1" Advertisement: promoted in >
+Client "1..*" -up-- "0..*" Property: views >
+Client "1..*" -down-- "0..*" Visit: schedules >
+Visit "1" -right-- "1" Property: visits >
+Client "0..*" -down-- "0..*" Advertisement: checks >
+Branch "1" -down-- "0..*" RealEstateAgent: employs >
+RealEstateAgent "1" -down-- "0..*" Advertisement: creates >
+RealEstateAgent "1" -down-- "0..*" Visit: confirms >
+NetworkManager "1" -down-- "0..*" Branch: manages >
+NetworkManager "1" -down-- "0..*" RealEstateAgent: registers >
+
+
+Property <|-- Land
+Property <|-- Specifications
+Specifications <|-- Apartment
+Specifications <|--  House
+
+@enduml
